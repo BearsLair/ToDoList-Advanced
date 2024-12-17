@@ -32,4 +32,8 @@ class task {
   changeNotes(newNotes) {
     this.notes = newNotes;
   }
+
+  changeCheck(change) {
+    this.checked = change;
+  }
 }
