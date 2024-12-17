@@ -1,12 +1,18 @@
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
+// Method to add todos to a project is also present
 class project {
   constructor(projectTitle) {
     this.projectTitle = projectTitle;
+    this.currentToDos = [];
   }
 
   change(newTitle) {
     this.projectTitle = newTitle;
+  }
+
+  addTodo(newToDo) {
+    this.currentToDos.push(newToDo);
   }
 }
 
