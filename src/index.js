@@ -1,1 +1,1 @@
-let projects = {};
+let projects = [];
