@@ -1,1 +1,3 @@
-let projects = [];
+import { Project, Task } from "./todos";
+
+let allProjects = [];
