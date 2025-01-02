@@ -38,12 +38,12 @@ const newProjectModal = () => {
   modalDiv.appendChild(userInput);
   userInput.classList.add("modal-userinput");
 
-  const projectSubmitBtn = document.createElement("button");
+  const submitBtn = document.createElement("button");
   modalDiv.appendChild(projectSubmitBtn);
-  projectSubmitBtn.classList.add("submitBtn");
-  projectSubmitBtn.textContent = "Submit";
+  submitBtn.classList.add("submitBtn");
+  submitBtn.textContent = "Submit";
 
-  projectSubmitBtn.addEventListener("click", () => {
+  submitBtn.addEventListener("click", () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
     currentViewedProject = project.projectTitle;
