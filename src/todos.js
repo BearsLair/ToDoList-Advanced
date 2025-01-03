@@ -112,27 +112,26 @@ const newTaskModal = () => {
 
   // Submit button for todos
   submitBtn.addEventListener("click", () => {
-    addTaskToProject();
+    let todoTitle = nameInput.value;
+    let description = descInput.value;
+    let dueDate = dateInput.value;
+    let notes = notesInput.value;
+    let index = -1;
+    let newTask = new Task(todoTitle, description, dueDate, notes);
+    if (allProjects.length === 0) {
+      alert("Please create a project.");
+    } else if (allProjects.length > 0) {
+      index = allProjects.findIndex(
+        (project) => project.projectTitle === currentViewedProject
+      );
+      allProjects[index].currentToDos.push(newTask);
+    }
+    console.log("added task: ", newTask);
+    console.log("tasks as they appear in the project: ", allProjects[index]);
     console.log("Stored projects: ", allProjects);
     console.log("Current viewed project: ", currentViewedProject);
     modalDiv.style.display = "none";
   });
-};
-
-const addTaskToProject = () => {
-  todoTitle = nameInput.value;
-  description = descInput.value;
-  dueDate = dateInput.value;
-  notes = notesInput.value;
-  let newTask = new Task(todoTitle, description, dueDate, notes);
-  if (allProjects.length === 0) {
-    alert("Please create a project.");
-  } else if (allProjects.length > 0) {
-    let index = allProjects.findIndex(
-      (project) => project.projectTitle === currentViewedProject
-    );
-    allProjects[index].currentToDos.push(newTask);
-  }
 };
 
 export { newTaskModal };
