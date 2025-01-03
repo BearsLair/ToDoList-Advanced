@@ -55,11 +55,12 @@ const newTaskModal = () => {
 
   const nameLabel = document.createElement("p");
   taskName.appendChild(nameLabel);
+  nameLabel.textContent = "To Do Task:";
   nameLabel.classList.add("task-label");
 
   const nameInput = document.createElement("input");
   taskName.appendChild(nameInput);
-  nameName.classList.add("task-input");
+  nameInput.classList.add("task-input");
 
   // Description for todo
   const taskDesc = document.createElement("div");
@@ -68,6 +69,7 @@ const newTaskModal = () => {
 
   const descLabel = document.createElement("p");
   taskDesc.appendChild(descLabel);
+  descLabel.textContent = "Description";
   descLabel.classList.add("task-label");
 
   const descInput = document.createElement("input");
@@ -81,6 +83,7 @@ const newTaskModal = () => {
 
   const dateLabel = document.createElement("p");
   taskDate.appendChild(dateLabel);
+  dateLabel.textContent = "Due Date";
   dateLabel.classList.add("task-label");
 
   const dateInput = document.createElement("input");
@@ -95,6 +98,7 @@ const newTaskModal = () => {
 
   const notesLabel = document.createElement("p");
   taskNotes.appendChild(notesLabel);
+  notesLabel.textContent = "Notes:";
   notesLabel.classList.add("task-label");
 
   const notesInput = document.createElement("input");
@@ -102,14 +106,19 @@ const newTaskModal = () => {
   notesInput.classList.add("task-input");
 
   const submitBtn = document.createElement("button");
-  modalDiv.appendChild(projectSubmitBtn);
+  modalDiv.appendChild(submitBtn);
   submitBtn.classList.add("submitBtn");
   submitBtn.textContent = "Submit";
 
   // Submit button for todos
-  taskSubmitBtn.addEventListener("click", () => {
+  submitBtn.addEventListener("click", () => {
+    // New todo instance created
+    todoTitle = nameInput.value;
+    description = descInput.value;
+    dueDate = dateInput.value;
+    let newTask = new Task(todoTitle, description, dueDate, notes);
     modalDiv.style.display = "none";
   });
 };
 
-export default newTaskModal;
+export { newTaskModal };
