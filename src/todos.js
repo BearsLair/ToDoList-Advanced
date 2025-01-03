@@ -112,13 +112,25 @@ const newTaskModal = () => {
 
   // Submit button for todos
   submitBtn.addEventListener("click", () => {
-    // New todo instance created
-    todoTitle = nameInput.value;
-    description = descInput.value;
-    dueDate = dateInput.value;
-    let newTask = new Task(todoTitle, description, dueDate, notes);
+    addTaskToProject();
     modalDiv.style.display = "none";
   });
+};
+
+const addTaskToProject = () => {
+  todoTitle = nameInput.value;
+  description = descInput.value;
+  dueDate = dateInput.value;
+  notes = notesInput.value;
+  let newTask = new Task(todoTitle, description, dueDate, notes);
+  if (allProjects.length === 0) {
+    alert("Please create a project.");
+  } else if (allProjects.length > 0) {
+    let index = allProjects.findIndex(
+      (project) => project.projectTitle === currentViewedProject
+    );
+    allProjects[index].currentToDos.push(newTask);
+  }
 };
 
 export { newTaskModal };
