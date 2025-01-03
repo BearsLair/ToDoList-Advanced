@@ -113,6 +113,8 @@ const newTaskModal = () => {
   // Submit button for todos
   submitBtn.addEventListener("click", () => {
     addTaskToProject();
+    console.log("Stored projects: ", allProjects);
+    console.log("Current viewed project: ", currentViewedProject);
     modalDiv.style.display = "none";
   });
 };
