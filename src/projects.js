@@ -47,7 +47,7 @@ const newProjectModal = () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
     currentViewedProject = project.projectTitle;
-    console.log(allProjects);
+    console.log("Stored projects: ", allProjects);
     console.log("Current viewed project: ", currentViewedProject);
     modalDiv.style.display = "none";
   });
