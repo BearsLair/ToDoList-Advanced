@@ -39,7 +39,7 @@ const newProjectModal = () => {
   userInput.classList.add("modal-userinput");
 
   const submitBtn = document.createElement("button");
-  modalDiv.appendChild(projectSubmitBtn);
+  modalDiv.appendChild(submitBtn);
   submitBtn.classList.add("submitBtn");
   submitBtn.textContent = "Submit";
 
@@ -48,6 +48,7 @@ const newProjectModal = () => {
     allProjects.push(project);
     currentViewedProject = project.projectTitle;
     console.log(allProjects);
+    console.log("Current viewed project: ", currentViewedProject);
     modalDiv.style.display = "none";
   });
 };
