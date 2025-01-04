@@ -1,3 +1,5 @@
+import { displayProjects } from "./display";
+
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
 // Method to add/delete todos to a project is also present
@@ -47,6 +49,9 @@ const newProjectModal = () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
     currentViewedProject = project.projectTitle;
+    if (allProjects.length > 0) {
+      displayProjects();
+    }
     console.log("Stored projects: ", allProjects);
     console.log("Current viewed project: ", currentViewedProject);
     modalDiv.style.display = "none";

@@ -1,16 +1,12 @@
 import { newProjectModal, allProjects, currentViewedProject } from "./projects";
 import { newTaskModal } from "./todos";
+import { newUser } from "./display";
 import "./styles.css";
 
-const newProject = document.querySelector("#newProject");
-const newTask = document.querySelector("#newTask");
+if (allProjects.length === 0) {
+  newUser();
+}
 
-newProject.addEventListener("click", () => {
-  console.log("Current Projects before new one: ", allProjects);
-  console.log("Currently viewed project: ", currentViewedProject);
-  newProjectModal();
-});
-
-newTask.addEventListener("click", () => {
-  newTaskModal();
-});
+// newTask.addEventListener("click", () => {
+//   newTaskModal();
+// });

@@ -6,6 +6,11 @@ body {
   width: 100%;
 }
 
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+}
+
 .modal-div {
   display: none;
   z-index: 1;
