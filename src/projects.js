@@ -1,5 +1,8 @@
 import { displayProjects } from "./display";
 
+let allProjects = [];
+let currentViewedProject = null;
+
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
 // Method to add/delete todos to a project is also present
@@ -20,10 +23,11 @@ class Project {
   deleteTodo(index) {
     this.currentToDos.splice(index, index + 1);
   }
-}
 
-let allProjects = [];
-let currentViewedProject = null;
+  makeCurrentProject() {
+    currentViewedProject = this.projectTitle;
+  }
+}
 
 //Constructs new project dialog box
 const newProjectModal = () => {
@@ -48,7 +52,7 @@ const newProjectModal = () => {
   submitBtn.addEventListener("click", () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
-    currentViewedProject = project.projectTitle;
+    project.makeCurrentProject();
     if (allProjects.length > 0) {
       displayProjects();
     }

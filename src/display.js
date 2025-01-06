@@ -24,6 +24,11 @@ const displayProjects = () => {
     navBar.appendChild(projectTab);
     projectTab.textContent = project.projectTitle;
     projectTab.id = `${project.projecTitle}`;
+
+    projectTab.addEventListener("click", () => {
+      project.makeCurrentProject();
+      console.log(currentViewedProject);
+    });
   });
 
   newUser();
