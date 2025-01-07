@@ -20,7 +20,7 @@ class Project {
     this.currentToDos.push(newToDo);
   }
 
-  deleteTodo(index) {
+  deleteToDo(index) {
     this.currentToDos.splice(index, index + 1);
   }
 
