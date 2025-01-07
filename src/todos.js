@@ -1,3 +1,4 @@
+import { displayToDos } from "./display";
 import { allProjects, currentViewedProject } from "./projects";
 
 // Creates new to-do item with title, description, due date, and notes
@@ -122,11 +123,9 @@ const newTaskModal = () => {
     index = allProjects.findIndex(
       (project) => project.projectTitle === currentViewedProject
     );
-    allProjects[index].currentToDos.push(newTask);
-    // console.log("added task: ", newTask);
-    // console.log("tasks as they appear in the project: ", allProjects[index]);
-    // console.log("Stored projects: ", allProjects);
-    // console.log("Current viewed project: ", currentViewedProject);
+
+    allProjects[index].addTodo(newTask);
+    displayToDos();
     modalDiv.style.display = "none";
   });
 };

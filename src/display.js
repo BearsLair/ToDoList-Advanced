@@ -1,8 +1,11 @@
 import { allProjects, currentViewedProject, newProjectModal } from "./projects";
+import { newTaskModal } from "./todos";
 
 const navBar = document.querySelector("nav");
 navBar.classList.add("nav-bar");
-// const mainContent = document.querySelector(".maincontent");
+
+const submitTaskBtn = document.createElement("button");
+const selectedProjectTasks = document.querySelector(".main-content");
 
 const newUser = () => {
   const newProjectBtn = document.createElement("button");
@@ -28,12 +31,71 @@ const displayProjects = () => {
     projectTab.addEventListener("click", () => {
       project.makeCurrentProject();
       console.log(currentViewedProject);
+
+      const submitTaskBtn = document.createElement("button");
+      const selectedProjectTasks = document.querySelector(".main-content");
+
+      selectedProjectTasks.appendChild(submitTaskBtn);
+      submitTaskBtn.textContent = "Submit New To-Do...";
+      submitTaskBtn.addEventListener("click", () => {
+        newTaskModal();
+      });
     });
   });
 
   newUser();
 };
 
-const displayCurrentTasks = () => {};
+const displayToDos = () => {
+  selectedProjectTasks.innerHTML = "";
 
-export { newUser, displayProjects };
+  let taskIndex = -1;
+
+  taskIndex = allProjects.findIndex(
+    (project) => project.projectTitle === currentViewedProject
+  );
+
+  allProjects[taskIndex].currentToDos.map((task) => {
+    const taskDiv = document.createElement("div");
+    selectedProjectTasks.appendChild(taskDiv);
+    taskDiv.classList.add("task-div");
+
+    const title = document.createElement("p");
+    taskDiv.appendChild(title);
+    title.textContent = task.todoTitle;
+    title.classList.add("taskElement");
+
+    const description = document.createElement("p");
+    taskDiv.appendChild(description);
+    description.textContent = task.description;
+    description.classList.add("taskElement");
+
+    const dueDate = document.createElement("p");
+    taskDiv.appendChild(dueDate);
+    dueDate.textContent = task.dueDate;
+    dueDate.classList.add("taskElement");
+
+    const notes = document.createElement("p");
+    taskDiv.appendChild(notes);
+    notes.textContent = task.notes;
+    notes.classList.add("taskElement");
+
+    const checked = document.createElement("input");
+    taskDiv.appendChild(checked);
+    checked.type = "checkbox";
+    if (checked === true) {
+      checked.checked = true;
+    } else if (checked === false) {
+      checked.checked = false;
+    }
+    checked.classList.add("taskElement");
+  });
+
+  selectedProjectTasks.appendChild(submitTaskBtn);
+  submitTaskBtn.textContent = "Submit New To-Do...";
+  submitTaskBtn.addEventListener("click", () => {
+    newTaskModal();
+  });
+};
+
+export { newUser, displayProjects, displayToDos };
