@@ -88,6 +88,12 @@ const displayToDos = () => {
         checked.checked = false;
       }
       checked.classList.add("taskElement");
+
+      const deleteBtn = document.createElement("button");
+      taskDiv.appendChild(deleteBtn);
+      deleteBtn.textContent = "X";
+      deleteBtn.classList.add("taskElement");
+      deleteBtn.addEventListener("click", () => {});
     });
 
     selectedProjectTasks.appendChild(submitTaskBtn);
