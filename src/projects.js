@@ -59,8 +59,6 @@ const newProjectModal = () => {
     if (allProjects.length > 0) {
       displayProjects();
     }
-    console.log("Stored projects: ", allProjects);
-    console.log("Current viewed project: ", currentViewedProject);
     modalDiv.style.display = "none";
   });
 };
