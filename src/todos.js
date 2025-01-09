@@ -1,3 +1,6 @@
+// Module for creating new to-dos for each user-created project
+// via a Javascript class and modal
+
 import { displayToDos } from "./display";
 import { allProjects, currentViewedProject } from "./projects";
 
@@ -33,6 +36,7 @@ class Task {
   }
 }
 
+// Creates dialog box for user to enter new to-do within a project
 const newTaskModal = () => {
   const modalDiv = document.querySelector(".modal-div");
   modalDiv.innerHTML = "";
@@ -112,6 +116,7 @@ const newTaskModal = () => {
   submitBtn.textContent = "Submit";
 
   // Submit button for todos modal
+  // Inserts new to-do object into the current project's currentToDos array
   submitBtn.addEventListener("click", () => {
     let todoTitle = nameInput.value;
     let description = descInput.value;
