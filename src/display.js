@@ -44,20 +44,18 @@ const displayProjects = () => {
 
 const displayToDos = () => {
   selectedProjectTasks.innerHTML = "";
-  console.log("displayToDos code running");
   let taskIndex = -1;
 
   taskIndex = allProjects.findIndex(
     (project) => project.projectTitle === currentViewedProject
   );
 
-  console.log("Current taskIndex: ", taskIndex);
-
   if (allProjects[taskIndex].currentToDos.length > 0) {
     allProjects[taskIndex].currentToDos.map((task) => {
       const taskDiv = document.createElement("div");
       selectedProjectTasks.appendChild(taskDiv);
       taskDiv.classList.add("task-div");
+      taskDiv.id = `${taskIndex}`;
 
       const title = document.createElement("p");
       taskDiv.appendChild(title);
@@ -93,7 +91,11 @@ const displayToDos = () => {
       taskDiv.appendChild(deleteBtn);
       deleteBtn.textContent = "X";
       deleteBtn.classList.add("taskElement");
-      deleteBtn.addEventListener("click", () => {});
+      deleteBtn.addEventListener("click", () => {
+        allProjects[taskIndex].deleteToDo(taskDiv.id);
+
+        displayToDos();
+      });
     });
 
     selectedProjectTasks.appendChild(submitTaskBtn);
