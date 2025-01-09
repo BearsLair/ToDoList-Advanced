@@ -24,7 +24,7 @@ class Project {
   }
 
   deleteToDo(index) {
-    this.currentToDos.splice(index, index + 1);
+    this.currentToDos.splice(index, 1);
   }
 
   makeCurrentProject() {
