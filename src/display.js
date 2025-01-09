@@ -31,7 +31,6 @@ const displayProjects = () => {
 
     projectTab.addEventListener("click", () => {
       project.makeCurrentProject();
-      console.log(currentViewedProject);
 
       displayToDos();
     });
@@ -55,7 +54,7 @@ const displayToDos = () => {
       const taskDiv = document.createElement("div");
       selectedProjectTasks.appendChild(taskDiv);
       taskDiv.classList.add("task-div");
-      taskDiv.id = `${taskIndex}`;
+      taskDiv.id = `${allProjects[taskIndex].currentToDos.indexOf(task)}`;
 
       const title = document.createElement("p");
       taskDiv.appendChild(title);
