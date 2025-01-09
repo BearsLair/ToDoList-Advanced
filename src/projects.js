@@ -1,3 +1,5 @@
+// Module for creating new projects via a Javascript class and modal
+
 import { displayProjects } from "./display";
 
 let allProjects = [];
@@ -5,7 +7,8 @@ let currentViewedProject = null;
 
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
-// Method to add/delete todos to a project is also present
+// Methods to add/delete todos to a project is also present
+// To-dos for a project are stored as objects in currentToDos array
 class Project {
   constructor(projectTitle) {
     this.projectTitle = projectTitle;
