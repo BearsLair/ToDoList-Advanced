@@ -43,18 +43,18 @@ const displayProjects = () => {
 
 const displayToDos = () => {
   selectedProjectTasks.innerHTML = "";
-  let taskIndex = -1;
+  let projectIndex = -1;
 
-  taskIndex = allProjects.findIndex(
+  projectIndex = allProjects.findIndex(
     (project) => project.projectTitle === currentViewedProject
   );
 
-  if (allProjects[taskIndex].currentToDos.length > 0) {
-    allProjects[taskIndex].currentToDos.map((task) => {
+  if (allProjects[projectIndex].currentToDos.length > 0) {
+    allProjects[projectIndex].currentToDos.map((task) => {
       const taskDiv = document.createElement("div");
       selectedProjectTasks.appendChild(taskDiv);
       taskDiv.classList.add("task-div");
-      taskDiv.id = `${allProjects[taskIndex].currentToDos.indexOf(task)}`;
+      taskDiv.id = `${allProjects[projectIndex].currentToDos.indexOf(task)}`;
 
       const title = document.createElement("p");
       taskDiv.appendChild(title);
@@ -79,19 +79,27 @@ const displayToDos = () => {
       const checked = document.createElement("input");
       taskDiv.appendChild(checked);
       checked.type = "checkbox";
-      if (checked === true) {
+      checked.classList.add("taskElement");
+      checked.id = taskDiv.id;
+
+      if (allProjects[projectIndex].currentToDos[taskDiv.id].checked === true) {
         checked.checked = true;
-      } else if (checked === false) {
+      } else {
         checked.checked = false;
       }
-      checked.classList.add("taskElement");
+
+      checked.addEventListener("click", () => {
+        allProjects[projectIndex].currentToDos[taskDiv.id].changeCheck();
+
+        displayToDos();
+      });
 
       const deleteBtn = document.createElement("button");
       taskDiv.appendChild(deleteBtn);
       deleteBtn.textContent = "X";
       deleteBtn.classList.add("taskElement");
       deleteBtn.addEventListener("click", () => {
-        allProjects[taskIndex].deleteToDo(taskDiv.id);
+        allProjects[projectIndex].deleteToDo(taskDiv.id);
 
         displayToDos();
       });
@@ -102,7 +110,7 @@ const displayToDos = () => {
     submitTaskBtn.addEventListener("click", () => {
       newTaskModal();
     });
-  } else if (allProjects[taskIndex].currentToDos.length === 0) {
+  } else if (allProjects[projectIndex].currentToDos.length === 0) {
     selectedProjectTasks.appendChild(submitTaskBtn);
     submitTaskBtn.textContent = "Submit New To-Do...";
     submitTaskBtn.addEventListener("click", () => {
