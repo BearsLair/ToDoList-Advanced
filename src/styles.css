@@ -6,10 +6,26 @@ body {
   width: 100%;
 }
 
-.nav-bar {
+.nav-tabs {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.nav-button {
+  border: solid rgb(117, 120, 123);
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 1rem;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  height: 2px;
+  background-color: rgb(117, 120, 123);
 }
 
 .modal-div {
@@ -47,4 +63,5 @@ body {
 
 .taskElement {
   margin-right: 20px;
+  font-size: 1rem;
 }
