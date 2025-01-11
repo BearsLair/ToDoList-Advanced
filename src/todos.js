@@ -31,8 +31,12 @@ class Task {
     this.notes = newNotes;
   }
 
-  changeCheck(change) {
-    this.checked = change;
+  changeCheck() {
+    if (this.checked === false) {
+      this.checked = true;
+    } else if (this.checked === true) {
+      this.checked = false;
+    }
   }
 }
 
