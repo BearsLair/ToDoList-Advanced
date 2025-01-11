@@ -2,7 +2,6 @@ import { allProjects, currentViewedProject, newProjectModal } from "./projects";
 import { newTaskModal } from "./todos";
 
 const navBar = document.querySelector("nav");
-navBar.classList.add("nav-bar");
 
 const submitTaskBtn = document.createElement("button");
 const selectedProjectTasks = document.querySelector(".main-content");
@@ -25,7 +24,8 @@ const displayProjects = () => {
     const projectTab = document.createElement("button");
     navBar.appendChild(projectTab);
     projectTab.textContent = project.projectTitle;
-    projectTab.id = `${project.projecTitle}`;
+    projectTab.id = project.projectTitle;
+    projectTab.classList.add("nav-button");
 
     selectedProjectTasks.innerHTML = "";
 
