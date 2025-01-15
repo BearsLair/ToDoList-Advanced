@@ -44,7 +44,7 @@ class Task {
 const newTaskModal = () => {
   const modalDiv = document.querySelector(".modal-div");
   modalDiv.innerHTML = "";
-  modalDiv.style.display = "block";
+  modalDiv.style.display = "flex";
 
   // Modal label
   const taskTitle = document.createElement("p");
