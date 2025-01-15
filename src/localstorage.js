@@ -1,13 +1,11 @@
 import { allProjects } from "./projects";
 
 const saveData = () => {
-    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    localStorage.setItem('allProjects', allProjects);
 }
 
 const getData = () => {
-    if (allProjects) {
-        allProjects = JSON.parse('allProjects');
-    }
+        allProjects = localStorage.getItem("allProjects");
 }
 
 const clearData = () => {
