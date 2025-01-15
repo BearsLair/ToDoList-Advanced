@@ -36,7 +36,7 @@ class Project {
 const newProjectModal = () => {
   const modalDiv = document.querySelector(".modal-div");
   modalDiv.innerHTML = "";
-  modalDiv.style.display = "block";
+  modalDiv.style.display = "flex";
 
   const desc = document.createElement("p");
   modalDiv.appendChild(desc);
