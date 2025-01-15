@@ -1,5 +1,6 @@
 import { allProjects, currentViewedProject, newProjectModal } from "./projects";
 import { newTaskModal } from "./todos";
+import { saveData, getData } from "./localstorage";
 
 const navBar = document.querySelector("nav");
 
@@ -8,6 +9,16 @@ submitTaskBtn.classList.add("submitnewtaskBtn");
 const selectedProjectTasks = document.querySelector(".main-content");
 
 const newUser = () => {
+  //TODO: get local browser data here
+  //TODO: if data doesn't exist, do following code:
+  
+  if (localStorage.getItem("allProjects") !== null) {
+    console.log("localStorage is NOT empty")
+    getData();
+    displayProjects();
+    displayToDos();
+  } else {
+  console.log("local storage IS empty")
   const newProjectBtn = document.createElement("button");
   navBar.appendChild(newProjectBtn);
   newProjectBtn.textContent = "New Project...";
@@ -15,8 +26,12 @@ const newUser = () => {
 
   newProjectBtn.addEventListener("click", () => {
     newProjectModal();
+
+  //////////////////  
   });
+  }
 };
+
 
 const displayProjects = () => {
   navBar.innerHTML = "";
@@ -92,6 +107,7 @@ const displayToDos = () => {
       checked.addEventListener("click", () => {
         allProjects[projectIndex].currentToDos[taskDiv.id].changeCheck();
 
+        saveData();
         displayToDos();
       });
 
@@ -102,6 +118,7 @@ const displayToDos = () => {
       deleteBtn.addEventListener("click", () => {
         allProjects[projectIndex].deleteToDo(taskDiv.id);
 
+        saveData();
         displayToDos();
       });
     });

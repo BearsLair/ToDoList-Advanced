@@ -1,3 +1,4 @@
+import { saveData } from "./localstorage";
 // Module for creating new projects via a Javascript class and modal
 
 import { displayProjects } from "./display";
@@ -52,13 +53,12 @@ const newProjectModal = () => {
   submitBtn.classList.add("submitBtn");
   submitBtn.textContent = "Submit";
 
-
-
   submitBtn.addEventListener("click", () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
     project.makeCurrentProject();
     if (allProjects.length > 0) {
+      saveData();
       displayProjects();
     }
     modalDiv.style.display = "none";
