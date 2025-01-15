@@ -4,6 +4,7 @@ import { newTaskModal } from "./todos";
 const navBar = document.querySelector("nav");
 
 const submitTaskBtn = document.createElement("button");
+submitTaskBtn.classList.add("submitnewtaskBtn");
 const selectedProjectTasks = document.querySelector(".main-content");
 
 const newUser = () => {
