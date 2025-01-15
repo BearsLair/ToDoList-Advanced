@@ -137,6 +137,15 @@ const newTaskModal = () => {
     displayToDos();
     modalDiv.style.display = "none";
   });
+
+  const cancelModal = document.createElement("button");
+  modalDiv.appendChild(cancelModal);
+  cancelModal.classList.add("submitBtn");
+  cancelModal.textContent = "Cancel Submit Task";
+
+  cancelModal.addEventListener("click", () => {
+    modalDiv.style.display = "none";
+  });
 };
 
 export { newTaskModal };

@@ -52,6 +52,8 @@ const newProjectModal = () => {
   submitBtn.classList.add("submitBtn");
   submitBtn.textContent = "Submit";
 
+
+
   submitBtn.addEventListener("click", () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
@@ -59,6 +61,15 @@ const newProjectModal = () => {
     if (allProjects.length > 0) {
       displayProjects();
     }
+    modalDiv.style.display = "none";
+  });
+
+  const cancelModal = document.createElement("button");
+  modalDiv.appendChild(cancelModal);
+  cancelModal.classList.add("submitBtn");
+  cancelModal.textContent = "Cancel Project Submit";
+
+  cancelModal.addEventListener("click", () => {
     modalDiv.style.display = "none";
   });
 };
