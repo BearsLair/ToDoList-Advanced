@@ -12,3 +12,5 @@ Advanced to-list features to add:
 ( ) Cancel button for project modal
 ( ) Change task priority
 ( ) Modify date pattern
+( ) Highlight project tab
+( ) Wordwrap long text in desription and notes
