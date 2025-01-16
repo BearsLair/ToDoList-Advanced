@@ -18,6 +18,16 @@ const makeCurrentProject = (project) => {
   currentViewedProject = project.projectTitle;
 };
 
+const changeCheck = (projectIndex, id) => {
+  console.log("check should be changing...");
+  if (allProjects[projectIndex].currentToDos[id].checked === false) {
+    console.log("change check should be executing");
+    allProjects[projectIndex].currentToDos[id].checked = true;
+  } else if (allProjects[projectIndex].currentToDos[id].checked === true) {
+    allProjects[projectIndex].currentToDos[id].checked = false;
+  }
+};
+
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
 // Methods to add/delete todos to a project is also present
@@ -40,14 +50,6 @@ class Project {
     this.currentToDos.splice(index, 1);
   }
 }
-
-const changeCheck = (checked) => {
-  if (checked === false) {
-    checked = true;
-  } else if (checked === true) {
-    checked = false;
-  }
-};
 
 //Constructs new project dialog box
 const newProjectModal = () => {

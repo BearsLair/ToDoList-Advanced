@@ -22,7 +22,6 @@ const newUser = () => {
     startProject();
     displayProjects();
     displayToDos();
-    console.log("something should be happening here!");
   } else if (localStorage.getItem("allProjects") === null) {
     const newProjectBtn = document.createElement("button");
     navBar.appendChild(newProjectBtn);
@@ -114,7 +113,8 @@ const displayToDos = () => {
       }
 
       checked.addEventListener("click", () => {
-        changeCheck(allProjects[projectIndex].currentToDos[taskDiv.id].checked);
+        const id = taskDiv.id;
+        changeCheck(projectIndex, id);
         // Test
         console.log(allProjects[projectIndex].currentToDos[taskDiv.id].checked);
         clearData();
