@@ -3,7 +3,7 @@
 
 import { displayToDos } from "./display";
 import { clearData, saveData } from "./localstorage";
-import { allProjects, currentViewedProject } from "./projects";
+import { addTodo, allProjects, currentViewedProject } from "./projects";
 
 // Creates new to-do item with title, description, due date, and notes
 // Methods are included to change elements of the to-do items
@@ -110,7 +110,7 @@ const newTaskModal = () => {
       (project) => project.projectTitle === currentViewedProject
     );
 
-    allProjects[index].addTodo(newTask);
+    addTodo(index, newTask);
     clearData();
     saveData(allProjects);
     displayToDos();

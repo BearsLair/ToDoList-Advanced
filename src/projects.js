@@ -28,6 +28,10 @@ const changeCheck = (projectIndex, id) => {
   }
 };
 
+const addTodo = (index, newTask) => {
+  allProjects[index].currentToDos.push(newTask);
+};
+
 const deleteTodo = (projectIndex, id) => {
   allProjects[projectIndex].currentToDos.splice(id, 1);
 };
@@ -40,10 +44,6 @@ class Project {
   constructor(projectTitle) {
     this.projectTitle = projectTitle;
     this.currentToDos = [];
-  }
-
-  addTodo(newToDo) {
-    this.currentToDos.push(newToDo);
   }
 }
 
@@ -98,4 +98,5 @@ export {
   makeCurrentProject,
   changeCheck,
   deleteTodo,
+  addTodo,
 };
