@@ -1,15 +1,13 @@
-import { allProjects } from "./projects";
-
-const saveData = () => {
-    localStorage.setItem('allProjects', allProjects);
-}
+const saveData = (data) => {
+  localStorage.setItem("savedData", JSON.stringify(data));
+};
 
 const getData = () => {
-        allProjects = localStorage.getItem("allProjects");
-}
+  return JSON.parse(localStorage.getItem("savedData"));
+};
 
 const clearData = () => {
-    localStorage.clear();
-}
+  localStorage.clear();
+};
 
-export {saveData, getData, clearData};
+export { saveData, getData, clearData };
