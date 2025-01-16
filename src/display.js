@@ -6,6 +6,7 @@ import {
   startProject,
   makeCurrentProject,
   changeCheck,
+  deleteTodo,
 } from "./projects";
 import { newTaskModal } from "./todos";
 import { saveData, clearData, getData } from "./localstorage";
@@ -79,6 +80,7 @@ const displayToDos = () => {
       selectedProjectTasks.appendChild(taskDiv);
       taskDiv.classList.add("task-div");
       taskDiv.id = `${allProjects[projectIndex].currentToDos.indexOf(task)}`;
+      let id = taskDiv.id;
 
       const title = document.createElement("p");
       taskDiv.appendChild(title);
@@ -113,7 +115,6 @@ const displayToDos = () => {
       }
 
       checked.addEventListener("click", () => {
-        const id = taskDiv.id;
         changeCheck(projectIndex, id);
         // Test
         console.log(allProjects[projectIndex].currentToDos[taskDiv.id].checked);
@@ -127,7 +128,7 @@ const displayToDos = () => {
       deleteBtn.textContent = "X";
       deleteBtn.classList.add("taskElement");
       deleteBtn.addEventListener("click", () => {
-        allProjects[projectIndex].deleteToDo(taskDiv.id);
+        deleteTodo(projectIndex, id);
         clearData();
         saveData(allProjects);
         displayToDos();

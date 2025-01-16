@@ -28,6 +28,10 @@ const changeCheck = (projectIndex, id) => {
   }
 };
 
+const deleteTodo = (projectIndex, id) => {
+  allProjects[projectIndex].currentToDos.splice(id, 1);
+};
+
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
 // Methods to add/delete todos to a project is also present
@@ -38,16 +42,8 @@ class Project {
     this.currentToDos = [];
   }
 
-  change(newTitle) {
-    this.projectTitle = newTitle;
-  }
-
   addTodo(newToDo) {
     this.currentToDos.push(newToDo);
-  }
-
-  deleteToDo(index) {
-    this.currentToDos.splice(index, 1);
   }
 }
 
@@ -101,4 +97,5 @@ export {
   startProject,
   makeCurrentProject,
   changeCheck,
+  deleteTodo,
 };
