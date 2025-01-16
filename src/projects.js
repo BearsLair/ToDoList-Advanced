@@ -3,6 +3,8 @@ import { saveData, clearData, getData } from "./localstorage";
 
 import { displayProjects } from "./display";
 
+import { newUser } from "./display";
+
 let allProjects = [];
 let currentViewedProject = null;
 
@@ -11,7 +13,11 @@ const retrieveData = () => {
 };
 
 const startProject = () => {
-  currentViewedProject = allProjects[0].projectTitle;
+  if (allProjects > 0) {
+    currentViewedProject = allProjects[0].projectTitle;
+  } else {
+    currentViewedProject = null;
+  }
 };
 
 const makeCurrentProject = (project) => {
@@ -34,6 +40,17 @@ const addTodo = (index, newTask) => {
 
 const deleteTodo = (projectIndex, id) => {
   allProjects[projectIndex].currentToDos.splice(id, 1);
+};
+
+const deleteProject = () => {
+  let projectIndex = allProjects.findIndex(
+    (project) => project.projectTitle === currentViewedProject
+  );
+
+  allProjects.splice(projectIndex, 1);
+  saveData();
+
+  console.log(allProjects);
 };
 
 // Instantiates a new project that will include list of todos
@@ -99,4 +116,5 @@ export {
   changeCheck,
   deleteTodo,
   addTodo,
+  deleteProject,
 };

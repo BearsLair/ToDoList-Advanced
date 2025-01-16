@@ -7,6 +7,7 @@ import {
   makeCurrentProject,
   changeCheck,
   deleteTodo,
+  deleteProject,
 } from "./projects";
 import { newTaskModal } from "./todos";
 import { saveData, clearData, getData } from "./localstorage";
@@ -23,7 +24,7 @@ const newUser = () => {
     startProject();
     displayProjects();
     displayToDos();
-  } else if (localStorage.getItem("allProjects") === null) {
+  } else if (localStorage.getItem("savedData") === null) {
     const newProjectBtn = document.createElement("button");
     navBar.appendChild(newProjectBtn);
     newProjectBtn.textContent = "New Project...";
@@ -140,12 +141,42 @@ const displayToDos = () => {
     submitTaskBtn.addEventListener("click", () => {
       newTaskModal();
     });
+
+    const deleteProjectBtn = document.createElement("button");
+    selectedProjectTasks.appendChild(deleteProjectBtn);
+    deleteProjectBtn.textContent = "Delete Current Project";
+    deleteProjectBtn.addEventListener("click", () => {
+      deleteProject();
+      clearData();
+      saveData(allProjects);
+      newUser();
+    });
+    deleteProjectBtn.classList.add("deleteProjectBtn");
   } else if (allProjects[projectIndex].currentToDos.length === 0) {
     selectedProjectTasks.appendChild(submitTaskBtn);
     submitTaskBtn.textContent = "Submit New To-Do...";
     submitTaskBtn.addEventListener("click", () => {
       newTaskModal();
     });
+    const deleteProjectBtn = document.createElement("button");
+    selectedProjectTasks.appendChild(deleteProjectBtn);
+    deleteProjectBtn.textContent = "Delete Current Project";
+    deleteProjectBtn.addEventListener("click", () => {
+      deleteProject();
+      if (allProjects.length === 0) {
+        navBar.innerHTML = "";
+        selectedProjectTasks.innerHTML = "";
+        clearData();
+        newUser();
+      } else if (allProjects.length > 0) {
+        navBar.innerHTML = "";
+        selectedProjectTasks.innerHTML = "";
+        startProject();
+        displayProjects();
+        displayToDos();
+      }
+    });
+    deleteProjectBtn.classList.add("deleteProjectBtn");
   }
 };
 
