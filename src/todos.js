@@ -15,22 +15,6 @@ class Task {
     this.notes = notes;
     this.checked = false;
   }
-
-  changeTitle(newTitle) {
-    this.todoTitle = newTitle;
-  }
-
-  changeDesc(newDesc) {
-    this.description = newDesc;
-  }
-
-  changeDueDate(newDueDate) {
-    this.dueDate = newDueDate;
-  }
-
-  changeNotes(newNotes) {
-    this.notes = newNotes;
-  }
 }
 
 // Creates dialog box for user to enter new to-do within a project
