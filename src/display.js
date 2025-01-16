@@ -1,6 +1,14 @@
-import { allProjects, currentViewedProject, newProjectModal } from "./projects";
+import {
+  allProjects,
+  currentViewedProject,
+  newProjectModal,
+  retrieveData,
+  startProject,
+  makeCurrentProject,
+  changeCheck,
+} from "./projects";
 import { newTaskModal } from "./todos";
-import { saveData, getData } from "./localstorage";
+import { saveData, clearData, getData } from "./localstorage";
 
 const navBar = document.querySelector("nav");
 
@@ -9,29 +17,23 @@ submitTaskBtn.classList.add("submitnewtaskBtn");
 const selectedProjectTasks = document.querySelector(".main-content");
 
 const newUser = () => {
-  //TODO: get local browser data here
-  //TODO: if data doesn't exist, do following code:
-  
-  if (localStorage.getItem("allProjects") !== null) {
-    console.log("localStorage is NOT empty")
-    getData();
+  if (localStorage.getItem("savedData") !== null) {
+    retrieveData();
+    startProject();
     displayProjects();
     displayToDos();
-  } else {
-  console.log("local storage IS empty")
-  const newProjectBtn = document.createElement("button");
-  navBar.appendChild(newProjectBtn);
-  newProjectBtn.textContent = "New Project...";
-  newProjectBtn.classList.add("nav-button");
+    console.log("something should be happening here!");
+  } else if (localStorage.getItem("allProjects") === null) {
+    const newProjectBtn = document.createElement("button");
+    navBar.appendChild(newProjectBtn);
+    newProjectBtn.textContent = "New Project...";
+    newProjectBtn.classList.add("nav-button");
 
-  newProjectBtn.addEventListener("click", () => {
-    newProjectModal();
-
-  //////////////////  
-  });
+    newProjectBtn.addEventListener("click", () => {
+      newProjectModal();
+    });
   }
 };
-
 
 const displayProjects = () => {
   navBar.innerHTML = "";
@@ -46,15 +48,22 @@ const displayProjects = () => {
     selectedProjectTasks.innerHTML = "";
 
     projectTab.addEventListener("click", () => {
-      project.makeCurrentProject();
+      makeCurrentProject(project);
 
       displayToDos();
     });
   });
 
-  displayToDos();
+  const newProjectBtn = document.createElement("button");
+  navBar.appendChild(newProjectBtn);
+  newProjectBtn.textContent = "New Project...";
+  newProjectBtn.classList.add("nav-button");
 
-  newUser();
+  newProjectBtn.addEventListener("click", () => {
+    newProjectModal();
+  });
+
+  displayToDos();
 };
 
 const displayToDos = () => {
@@ -105,9 +114,11 @@ const displayToDos = () => {
       }
 
       checked.addEventListener("click", () => {
-        allProjects[projectIndex].currentToDos[taskDiv.id].changeCheck();
-
-        saveData();
+        changeCheck(allProjects[projectIndex].currentToDos[taskDiv.id].checked);
+        // Test
+        console.log(allProjects[projectIndex].currentToDos[taskDiv.id].checked);
+        clearData();
+        saveData(allProjects);
         displayToDos();
       });
 
@@ -117,8 +128,8 @@ const displayToDos = () => {
       deleteBtn.classList.add("taskElement");
       deleteBtn.addEventListener("click", () => {
         allProjects[projectIndex].deleteToDo(taskDiv.id);
-
-        saveData();
+        clearData();
+        saveData(allProjects);
         displayToDos();
       });
     });

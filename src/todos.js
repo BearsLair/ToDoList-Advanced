@@ -2,6 +2,7 @@
 // via a Javascript class and modal
 
 import { displayToDos } from "./display";
+import { clearData, saveData } from "./localstorage";
 import { allProjects, currentViewedProject } from "./projects";
 
 // Creates new to-do item with title, description, due date, and notes
@@ -29,14 +30,6 @@ class Task {
 
   changeNotes(newNotes) {
     this.notes = newNotes;
-  }
-
-  changeCheck() {
-    if (this.checked === false) {
-      this.checked = true;
-    } else if (this.checked === true) {
-      this.checked = false;
-    }
   }
 }
 
@@ -134,6 +127,8 @@ const newTaskModal = () => {
     );
 
     allProjects[index].addTodo(newTask);
+    clearData();
+    saveData(allProjects);
     displayToDos();
     modalDiv.style.display = "none";
   });

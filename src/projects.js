@@ -1,10 +1,22 @@
-import { saveData } from "./localstorage";
+import { saveData, clearData, getData } from "./localstorage";
 // Module for creating new projects via a Javascript class and modal
 
 import { displayProjects } from "./display";
 
 let allProjects = [];
 let currentViewedProject = null;
+
+const retrieveData = () => {
+  allProjects = getData();
+};
+
+const startProject = () => {
+  currentViewedProject = allProjects[0].projectTitle;
+};
+
+const makeCurrentProject = (project) => {
+  currentViewedProject = project.projectTitle;
+};
 
 // Instantiates a new project that will include list of todos
 // Method to change the project title is included
@@ -27,11 +39,15 @@ class Project {
   deleteToDo(index) {
     this.currentToDos.splice(index, 1);
   }
-
-  makeCurrentProject() {
-    currentViewedProject = this.projectTitle;
-  }
 }
+
+const changeCheck = (checked) => {
+  if (checked === false) {
+    checked = true;
+  } else if (checked === true) {
+    checked = false;
+  }
+};
 
 //Constructs new project dialog box
 const newProjectModal = () => {
@@ -56,9 +72,10 @@ const newProjectModal = () => {
   submitBtn.addEventListener("click", () => {
     let project = new Project(userInput.value);
     allProjects.push(project);
-    project.makeCurrentProject();
+    makeCurrentProject(project);
     if (allProjects.length > 0) {
-      saveData();
+      clearData();
+      saveData(allProjects);
       displayProjects();
     }
     modalDiv.style.display = "none";
@@ -74,4 +91,12 @@ const newProjectModal = () => {
   });
 };
 
-export { newProjectModal, allProjects, currentViewedProject };
+export {
+  newProjectModal,
+  allProjects,
+  currentViewedProject,
+  retrieveData,
+  startProject,
+  makeCurrentProject,
+  changeCheck,
+};
