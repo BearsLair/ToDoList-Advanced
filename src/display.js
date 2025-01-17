@@ -10,7 +10,7 @@ import {
   deleteProject,
 } from "./projects";
 import { newTaskModal } from "./todos";
-import { saveData, clearData, getData } from "./localstorage";
+import { saveData, clearData } from "./localstorage";
 
 const navBar = document.querySelector("nav");
 
@@ -79,14 +79,11 @@ const displayProjects = () => {
     }
   });
 
-  console.log(currentViewedProject);
-  console.log(allProjects);
   // This changed
   const todoListIndex = allProjects.findIndex(
     (project) => project.projectTitle === currentViewedProject
   );
 
-  console.log(todoListIndex);
   if (
     allProjects.length !== 0 &&
     allProjects[todoListIndex].currentToDos.length !== 0
