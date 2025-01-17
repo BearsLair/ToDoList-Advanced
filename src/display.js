@@ -49,8 +49,7 @@ const displayProjects = () => {
     selectedProjectTasks.innerHTML = "";
 
     projectTab.addEventListener("click", () => {
-      makeCurrentProject(project);
-
+      makeCurrentProject(project.projectTitle);
       displayToDos();
     });
   });
@@ -66,13 +65,35 @@ const displayProjects = () => {
 
   const deleteProjectBtn = document.createElement("button");
   navBar.appendChild(deleteProjectBtn);
-  deleteProjectBtn.textContent = "X Delete Current Project...";
+  deleteProjectBtn.textContent = "Delete Current Project...";
   deleteProjectBtn.classList.add("deleteProjectBtn");
   deleteProjectBtn.addEventListener("click", () => {
-    // Code goes here
+    deleteProject();
+    if (allProjects.length > 0) {
+      startProject();
+      displayProjects();
+    } else {
+      selectedProjectTasks.innerHTML = "";
+      navBar.innerHTML = "";
+      newUser();
+    }
   });
 
-  displayToDos();
+  console.log(currentViewedProject);
+  console.log(allProjects);
+  // This changed
+  const todoListIndex = allProjects.findIndex(
+    (project) => project.projectTitle === currentViewedProject
+  );
+
+  console.log(todoListIndex);
+  if (
+    allProjects.length !== 0 &&
+    allProjects[todoListIndex].currentToDos.length !== 0
+  ) {
+    displayToDos();
+  }
+  ///////////////
 };
 
 const displayToDos = () => {
@@ -81,7 +102,6 @@ const displayToDos = () => {
   let projectIndex = allProjects.findIndex((project) => {
     return project.projectTitle === currentViewedProject;
   });
-
   if (allProjects[projectIndex].currentToDos.length > 0) {
     allProjects[projectIndex].currentToDos.map((task) => {
       const taskDiv = document.createElement("div");

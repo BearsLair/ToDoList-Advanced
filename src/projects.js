@@ -3,8 +3,6 @@ import { saveData, clearData, getData } from "./localstorage";
 
 import { displayProjects } from "./display";
 
-import { newUser } from "./display";
-
 let allProjects = [];
 let currentViewedProject = null;
 
@@ -21,7 +19,7 @@ const startProject = () => {
 };
 
 const makeCurrentProject = (project) => {
-  currentViewedProject = project.projectTitle;
+  currentViewedProject = project;
 };
 
 const changeCheck = (projectIndex, id) => {
@@ -46,7 +44,15 @@ const deleteProject = () => {
   );
 
   allProjects.splice(projectIndex, 1);
-  saveData();
+
+  if (allProjects.length > 0) {
+    currentViewedProject = allProjects[0].projectTitle;
+    clearData();
+    saveData();
+  } else {
+    currentViewedProject = null;
+    clearData();
+  }
 };
 
 // Instantiates a new project that will include list of todos
@@ -87,6 +93,7 @@ const newProjectModal = () => {
     if (allProjects.length > 0) {
       clearData();
       saveData(allProjects);
+      makeCurrentProject(project.projectTitle);
       displayProjects();
     }
     modalDiv.style.display = "none";
