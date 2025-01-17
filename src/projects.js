@@ -13,7 +13,7 @@ const retrieveData = () => {
 };
 
 const startProject = () => {
-  if (allProjects > 0) {
+  if (allProjects.length > 0) {
     currentViewedProject = allProjects[0].projectTitle;
   } else {
     currentViewedProject = null;
@@ -25,9 +25,7 @@ const makeCurrentProject = (project) => {
 };
 
 const changeCheck = (projectIndex, id) => {
-  console.log("check should be changing...");
   if (allProjects[projectIndex].currentToDos[id].checked === false) {
-    console.log("change check should be executing");
     allProjects[projectIndex].currentToDos[id].checked = true;
   } else if (allProjects[projectIndex].currentToDos[id].checked === true) {
     allProjects[projectIndex].currentToDos[id].checked = false;
@@ -49,8 +47,6 @@ const deleteProject = () => {
 
   allProjects.splice(projectIndex, 1);
   saveData();
-
-  console.log(allProjects);
 };
 
 // Instantiates a new project that will include list of todos

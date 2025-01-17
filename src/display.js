@@ -69,11 +69,10 @@ const displayProjects = () => {
 
 const displayToDos = () => {
   selectedProjectTasks.innerHTML = "";
-  let projectIndex = -1;
 
-  projectIndex = allProjects.findIndex(
-    (project) => project.projectTitle === currentViewedProject
-  );
+  let projectIndex = allProjects.findIndex((project) => {
+    return project.projectTitle === currentViewedProject;
+  });
 
   if (allProjects[projectIndex].currentToDos.length > 0) {
     allProjects[projectIndex].currentToDos.map((task) => {
@@ -118,7 +117,6 @@ const displayToDos = () => {
       checked.addEventListener("click", () => {
         changeCheck(projectIndex, id);
         // Test
-        console.log(allProjects[projectIndex].currentToDos[taskDiv.id].checked);
         clearData();
         saveData(allProjects);
         displayToDos();
@@ -141,42 +139,12 @@ const displayToDos = () => {
     submitTaskBtn.addEventListener("click", () => {
       newTaskModal();
     });
-
-    const deleteProjectBtn = document.createElement("button");
-    selectedProjectTasks.appendChild(deleteProjectBtn);
-    deleteProjectBtn.textContent = "Delete Current Project";
-    deleteProjectBtn.addEventListener("click", () => {
-      deleteProject();
-      clearData();
-      saveData(allProjects);
-      newUser();
-    });
-    deleteProjectBtn.classList.add("deleteProjectBtn");
   } else if (allProjects[projectIndex].currentToDos.length === 0) {
     selectedProjectTasks.appendChild(submitTaskBtn);
     submitTaskBtn.textContent = "Submit New To-Do...";
     submitTaskBtn.addEventListener("click", () => {
       newTaskModal();
     });
-    const deleteProjectBtn = document.createElement("button");
-    selectedProjectTasks.appendChild(deleteProjectBtn);
-    deleteProjectBtn.textContent = "Delete Current Project";
-    deleteProjectBtn.addEventListener("click", () => {
-      deleteProject();
-      if (allProjects.length === 0) {
-        navBar.innerHTML = "";
-        selectedProjectTasks.innerHTML = "";
-        clearData();
-        newUser();
-      } else if (allProjects.length > 0) {
-        navBar.innerHTML = "";
-        selectedProjectTasks.innerHTML = "";
-        startProject();
-        displayProjects();
-        displayToDos();
-      }
-    });
-    deleteProjectBtn.classList.add("deleteProjectBtn");
   }
 };
 
