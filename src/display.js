@@ -79,7 +79,6 @@ const displayProjects = () => {
     }
   });
 
-  // This changed
   const todoListIndex = allProjects.findIndex(
     (project) => project.projectTitle === currentViewedProject
   );
@@ -99,7 +98,6 @@ const displayProjects = () => {
       newTaskModal();
     });
   }
-  ///////////////
 };
 
 const displayToDos = () => {
@@ -154,6 +152,15 @@ const displayToDos = () => {
         clearData();
         saveData(allProjects);
         displayToDos();
+      });
+
+      // EDIT BUTTON
+      const editBtn = document.createElement("button");
+      taskDiv.appendChild(editBtn);
+      editBtn.textContent = "Edit";
+      editBtn.classList.add("taskElement");
+      editBtn.addEventListener("click", () => {
+        // taskEditModal();
       });
 
       const deleteBtn = document.createElement("button");
