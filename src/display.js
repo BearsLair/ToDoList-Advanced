@@ -92,6 +92,15 @@ const displayProjects = () => {
     allProjects[todoListIndex].currentToDos.length !== 0
   ) {
     displayToDos();
+  } else if (
+    allProjects.length !== 0 &&
+    allProjects[todoListIndex].currentToDos.length === 0
+  ) {
+    selectedProjectTasks.appendChild(submitTaskBtn);
+    submitTaskBtn.textContent = "Submit New To-Do...";
+    submitTaskBtn.addEventListener("click", () => {
+      newTaskModal();
+    });
   }
   ///////////////
 };
