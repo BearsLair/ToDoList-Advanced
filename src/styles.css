@@ -7,6 +7,10 @@ body {
   min-width: 557px;
 }
 
+.title {
+  text-align: center;
+}
+
 .nav-tabs {
   display: flex;
   flex-direction: row;
