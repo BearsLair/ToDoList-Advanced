@@ -104,9 +104,10 @@ hr {
 }
 
 .deleteProjectBtn {
-  margin-top: 20px;
   background-color: red;
-  border: 1px solid black;
-  font-size: 1.2rem;
-  border-radius: 5px;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 1.5rem;
 }

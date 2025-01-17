@@ -64,6 +64,14 @@ const displayProjects = () => {
     newProjectModal();
   });
 
+  const deleteProjectBtn = document.createElement("button");
+  navBar.appendChild(deleteProjectBtn);
+  deleteProjectBtn.textContent = "X Delete Current Project...";
+  deleteProjectBtn.classList.add("deleteProjectBtn");
+  deleteProjectBtn.addEventListener("click", () => {
+    // Code goes here
+  });
+
   displayToDos();
 };
 
